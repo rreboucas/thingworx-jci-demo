@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ThingWorx — Asset Monitor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar__left">
+      <button class="app-launcher" aria-label="App launcher">
+        <span></span><span></span><span></span>
+        <span></span><span></span><span></span>
+        <span></span><span></span><span></span>
+      </button>
+      <img src="/assets/thingworx-logo.png" alt="ThingWorx" class="topbar__logo" id="trigger-logo" />
+    </div>
+    <div class="topbar__accent"></div>
+    <div class="topbar__customer" id="customer-label">Johnson Controls</div>
+  </header>
+
+  <main class="layout">
+    <aside class="asset-panel">
+      <div class="asset-panel__header">
+        <h2>Asset Model</h2>
+      </div>
+      <div class="asset-panel__filter">
+        <label>Filter By Site:</label>
+        <div class="select-faux">
+          <span id="site-filter-label">JCI Glendale Plant</span>
+          <span class="select-faux__caret">▾</span>
+        </div>
+      </div>
+      <div id="asset-list" class="asset-list"></div>
+    </aside>
+
+    <section class="dashboard">
+      <div class="row row--top">
+        <article class="card card--detail">
+          <header class="card__header">
+            <span class="card__icon-detail"></span>
+            <h3>Asset Detail</h3>
+          </header>
+          <div class="card__body detail-body">
+            <div class="detail-photo" id="detail-photo"></div>
+            <dl class="detail-meta">
+              <dt>Model Number:</dt><dd id="detail-model">—</dd>
+              <dt>Serial Number:</dt><dd id="detail-serial">—</dd>
+              <dt>Location:</dt><dd id="detail-location">—</dd>
+              <dt>Related Lines:</dt><dd id="detail-lines">—</dd>
+              <dt>Related Site:</dt><dd id="detail-site">—</dd>
+            </dl>
+          </div>
+        </article>
+
+        <article class="card card--info">
+          <header class="card__header">
+            <span class="card__icon-info"></span>
+            <h3>Info</h3>
+          </header>
+          <div class="card__body info-body">
+            <div class="gauge" data-metric="current">
+              <div class="gauge__label">Current</div>
+              <div class="gauge__bar"><div class="gauge__fill"></div><div class="gauge__value">—</div></div>
+            </div>
+            <div class="gauge" data-metric="voltage">
+              <div class="gauge__label">Voltage</div>
+              <div class="gauge__bar"><div class="gauge__fill"></div><div class="gauge__value">—</div></div>
+            </div>
+            <div class="gauge" data-metric="temperature">
+              <div class="gauge__label">Temperature</div>
+              <div class="gauge__bar"><div class="gauge__fill"></div><div class="gauge__value">—</div></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="card card--ops">
+          <header class="card__header">
+            <span class="card__icon-ops"></span>
+            <h3>Operation</h3>
+          </header>
+          <div class="card__body ops-body">
+            <button class="op-tile">
+              <svg viewBox="0 0 64 64" width="56" height="56" aria-hidden="true">
+                <rect x="6" y="14" width="52" height="34" rx="3" fill="none" stroke="#4a4a4a" stroke-width="2.5"/>
+                <line x1="10" y1="20" x2="54" y2="20" stroke="#4a4a4a" stroke-width="2"/>
+                <circle cx="13" cy="17" r="1.2" fill="#4a4a4a"/>
+                <circle cx="17" cy="17" r="1.2" fill="#4a4a4a"/>
+                <path d="M22 32 L42 32 M22 38 L36 38" stroke="#4a4a4a" stroke-width="2" stroke-linecap="round"/>
+                <line x1="22" y1="52" x2="42" y2="52" stroke="#4a4a4a" stroke-width="2.5"/>
+              </svg>
+              <span>Remote Connect</span>
+            </button>
+            <button class="op-tile">
+              <svg viewBox="0 0 64 64" width="56" height="56" aria-hidden="true">
+                <rect x="8" y="12" width="48" height="42" rx="3" fill="none" stroke="#4a4a4a" stroke-width="2.5"/>
+                <line x1="8" y1="22" x2="56" y2="22" stroke="#4a4a4a" stroke-width="2.5"/>
+                <line x1="20" y1="8" x2="20" y2="16" stroke="#4a4a4a" stroke-width="2.5" stroke-linecap="round"/>
+                <line x1="44" y1="8" x2="44" y2="16" stroke="#4a4a4a" stroke-width="2.5" stroke-linecap="round"/>
+                <rect x="16" y="28" width="6" height="6" fill="#4a4a4a"/>
+                <rect x="26" y="28" width="6" height="6" fill="#4a4a4a"/>
+                <rect x="36" y="28" width="6" height="6" fill="#4a4a4a"/>
+                <rect x="16" y="38" width="6" height="6" fill="#4a4a4a"/>
+                <rect x="26" y="38" width="6" height="6" fill="#4a4a4a"/>
+              </svg>
+              <span>Schedule Event</span>
+            </button>
+          </div>
+        </article>
+
+        <article class="card card--alert-setting">
+          <header class="card__header">
+            <span class="card__icon-alert"></span>
+            <h3>Alert Setting</h3>
+          </header>
+          <div class="card__body alert-body">
+            <div class="alert-recipient-row">
+              <label>Find Recipient</label>
+              <div class="recipient-control">
+                <div class="select-faux">
+                  <span>--Select a recipient--</span>
+                  <span class="select-faux__caret">▾</span>
+                </div>
+                <button class="btn btn--primary">Add/Edit Recipient</button>
+              </div>
+            </div>
+            <div class="alert-recipients">
+              <div class="alert-recipients__title">Alert Recipients</div>
+              <table class="recipients-table">
+                <thead>
+                  <tr><th>Username</th><th>Role</th></tr>
+                </thead>
+                <tbody id="recipients-body"></tbody>
+              </table>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div class="row row--bottom">
+        <article class="card card--alerts">
+          <div class="tabbar">
+            <button class="tab tab--active" data-tab="alert"><span class="dot dot--info"></span> Alert</button>
+            <button class="tab" data-tab="tickets"><span class="card__icon-tickets"></span> Service Tickets</button>
+          </div>
+          <div class="card__body alerts-body" id="alerts-body">
+            <div class="alerts-empty">No active alerts</div>
+          </div>
+        </article>
+
+        <article class="card card--analytics">
+          <div class="tabbar tabbar--single">
+            <span class="tab tab--static"><span class="card__icon-analytics"></span> Analytics</span>
+          </div>
+          <div class="card__body analytics-body" id="analytics-body">
+            <div class="analytics-empty">Select an asset with predicted failures to view analytics</div>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+  <script src="/app.js"></script>
+</body>
+</html>
