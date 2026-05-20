@@ -28,8 +28,8 @@ const ASSETS = [
     baseline: { current: 1.6, voltage: 23.5, temperature: 42.5, vibration: 1.4 }
   },
   {
-    id: 'RTU-03_Choice',
-    name: 'RTU-03_Choice',
+    id: 'CCU-7A',
+    name: 'Cooling Control Unit 7A',
     type: 'Choice Rooftop Unit',
     modelNumber: 'ZH-CHC-020',
     serialNumber: 'JCCHC00204134',

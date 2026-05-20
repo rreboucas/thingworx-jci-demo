@@ -23,7 +23,7 @@ for (const a of state.assets) {
   );
 }
 
-const FAILING_ID = 'RTU-03_Choice';
+const FAILING_ID = 'CCU-7A';
 
 function jitter(value, spread) {
   return +(value + (Math.random() - 0.5) * spread).toFixed(2);
