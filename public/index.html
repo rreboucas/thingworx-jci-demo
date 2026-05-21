@@ -20,7 +20,7 @@
       <img src="/assets/thingworx-logo.png" alt="ThingWorx" class="topbar__logo" id="trigger-logo" />
     </div>
     <div class="topbar__accent"></div>
-    <div class="topbar__customer" id="customer-label">Johnson Controls</div>
+    <div class="topbar__customer" id="customer-label" role="button" tabindex="0" title="Open Executive Dashboard">Johnson Controls</div>
   </header>
 
   <main class="layout">
@@ -164,8 +164,143 @@
     </section>
   </main>
 
+  <!-- Executive Dashboard overlay (Tableau-style) — toggled via Johnson Controls label -->
+  <section class="exec-dash" id="exec-dash" aria-hidden="true">
+    <header class="exec-dash__header">
+      <div class="exec-dash__title">
+        <h1>Executive Dashboard</h1>
+        <span class="exec-dash__divider"></span>
+        <span class="exec-dash__subtitle">Agentforce Impact on Save One Service — Live YoY view</span>
+      </div>
+      <button class="exec-dash__close" id="exec-dash-close" aria-label="Close dashboard">×</button>
+    </header>
+
+    <div class="exec-dash__filters">
+      <span class="exec-dash__hint"><span class="exec-dash__star">★</span> Charts you can click to filter view</span>
+      <div class="exec-dash__filter"><label>Year</label><span>All</span></div>
+      <div class="exec-dash__filter"><label>Region</label><span>All</span></div>
+      <div class="exec-dash__filter"><label>Priority</label><span>All</span></div>
+      <div class="exec-dash__agentforce">
+        <span class="exec-dash__agentforce-pulse"></span>
+        <span>Agentforce <b>ON</b></span>
+      </div>
+    </div>
+
+    <div class="exec-dash__grid">
+      <!-- KPI 1: Save One Cases -->
+      <article class="exec-card">
+        <header class="exec-card__head"><span class="exec-card__star">★</span><h2>Save One Cases</h2></header>
+        <div class="exec-card__body">
+          <div class="exec-kpi" data-target="730" data-counter="cases">0</div>
+          <div class="exec-kpi__label">YTD Resolved Cases | <b>Active: <span id="exec-active-cases">60</span></b></div>
+          <div class="exec-spark"><canvas id="spark-cases"></canvas></div>
+          <div class="exec-card__metric">
+            <span>Closure Rate (this week):</span>
+            <b class="exec-card__metric-good" id="exec-closure-rate">—</b>
+          </div>
+          <div class="exec-card__progress">
+            <div class="exec-card__progress-fill" id="exec-cases-progress"></div>
+          </div>
+          <div class="exec-card__footer">
+            <span>AVG Time To Close a Case</span>
+            <b id="exec-avg-case-time">—</b>
+          </div>
+          <div class="exec-card__sub-title">YTD Total Cases by Category and YoY Change</div>
+          <div class="exec-bars" id="exec-bars-cases"></div>
+        </div>
+      </article>
+
+      <!-- KPI 2: Work Orders -->
+      <article class="exec-card">
+        <header class="exec-card__head"><span class="exec-card__star">★</span><h2>Work Orders</h2></header>
+        <div class="exec-card__body">
+          <div class="exec-kpi" data-target="2480" data-counter="wo">0</div>
+          <div class="exec-kpi__label">YTD Closed Work Orders | <b>Active: <span id="exec-active-wo">142</span></b></div>
+          <div class="exec-spark"><canvas id="spark-wo"></canvas></div>
+          <div class="exec-card__metric">
+            <span>Overdue:</span>
+            <b class="exec-card__metric-bad" id="exec-overdue">3%</b>
+          </div>
+          <div class="exec-card__progress exec-card__progress--low">
+            <div class="exec-card__progress-fill" id="exec-overdue-progress"></div>
+          </div>
+          <div class="exec-card__metric exec-card__metric--split">
+            <div>
+              <span>First-Time Fix Rate</span>
+              <b class="exec-card__metric-good">94.2%</b>
+            </div>
+            <div>
+              <span>Truck Rolls Avoided</span>
+              <b class="exec-card__metric-good" id="exec-truck-rolls">—</b>
+            </div>
+          </div>
+          <div class="exec-card__sub-title" style="text-align:center;background:transparent;color:var(--text-muted)">Age of Active Work Orders</div>
+          <div class="exec-treemap" id="exec-treemap"></div>
+        </div>
+      </article>
+
+      <!-- KPI 3: Service Requests -->
+      <article class="exec-card">
+        <header class="exec-card__head"><span class="exec-card__star">★</span><h2>Service Requests</h2></header>
+        <div class="exec-card__body">
+          <div class="exec-kpi" data-target="8995" data-counter="sr">0</div>
+          <div class="exec-kpi__label">YTD Service Requests | <b>Active: <span id="exec-active-sr">1,258</span></b></div>
+          <div class="exec-spark"><canvas id="spark-sr"></canvas></div>
+          <div class="exec-card__metric">
+            <span>Auto-Resolved by Agentforce:</span>
+            <b class="exec-card__metric-good" id="exec-auto-resolved">—</b>
+          </div>
+          <div class="exec-card__progress">
+            <div class="exec-card__progress-fill" id="exec-auto-progress"></div>
+          </div>
+          <div class="exec-card__footer">
+            <span>Made SLA?</span>
+            <b class="exec-card__metric-good" id="exec-sla">100% of Total</b>
+          </div>
+          <div class="exec-card__sub-title">YTD Top Save One Categories &amp; YoY Change</div>
+          <div class="exec-toplist" id="exec-toplist"></div>
+        </div>
+      </article>
+    </div>
+
+    <!-- Agentforce impact strip -->
+    <div class="exec-dash__strip">
+      <div class="exec-strip-card">
+        <div class="exec-strip-card__title">Agentforce Activity — Live</div>
+        <div class="exec-ticker" id="exec-ticker"></div>
+      </div>
+      <div class="exec-strip-card">
+        <div class="exec-strip-card__title">Avg Case Resolution Time — Before vs. With Agentforce</div>
+        <div class="exec-compare">
+          <div class="exec-compare__row exec-compare__row--before">
+            <span class="exec-compare__lbl">Before</span>
+            <div class="exec-compare__bar"><span style="width:100%"></span></div>
+            <span class="exec-compare__val">5d 14h</span>
+          </div>
+          <div class="exec-compare__row exec-compare__row--after">
+            <span class="exec-compare__lbl">With Agentforce</span>
+            <div class="exec-compare__bar exec-compare__bar--good"><span id="exec-after-bar" style="width:0%"></span></div>
+            <span class="exec-compare__val" id="exec-after-val">—</span>
+          </div>
+          <div class="exec-compare__delta" id="exec-compare-delta">▼ —</div>
+        </div>
+      </div>
+      <div class="exec-strip-card">
+        <div class="exec-strip-card__title">Cost Savings YTD</div>
+        <div class="exec-savings" data-target="4280000" data-counter="savings">$0</div>
+        <div class="exec-savings__label">Reduced rolling-truck dispatch + faster MTTR</div>
+        <div class="exec-savings__bullets">
+          <div><span class="dot dot--good"></span>Field tech hours saved: <b id="exec-hours-saved">—</b></div>
+          <div><span class="dot dot--good"></span>Repeat dispatches prevented: <b id="exec-repeat-saved">—</b></div>
+          <div><span class="dot dot--good"></span>NPS lift (Save One): <b class="exec-card__metric-good">+18 pts</b></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <script src="/socket.io/socket.io.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
   <script src="/app.js"></script>
+  <script src="/exec-dash.js"></script>
 </body>
 </html>
