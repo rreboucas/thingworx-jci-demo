@@ -26,16 +26,19 @@
     repeatSaved: 0
   };
 
-  function open() {
+  function open(opts) {
     if (state.open) return;
     state.open = true;
     dash.classList.add('is-open');
     dash.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
+    if (!opts || !opts.silent) {
+      try { history.pushState({ execDash: true }, '', '/dashboard'); } catch (_) {}
+    }
     boot();
   }
 
-  function close() {
+  function close(opts) {
     if (!state.open) return;
     state.open = false;
     dash.classList.remove('is-open');
@@ -45,12 +48,32 @@
     state.intervals = [];
     Object.values(state.sparks).forEach(c => c && c.destroy && c.destroy());
     state.sparks = {};
+    if (!opts || !opts.silent) {
+      try { history.pushState({}, '', '/'); } catch (_) {}
+    }
   }
 
   trigger.addEventListener('click', open);
   trigger.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); } });
-  closeBtn.addEventListener('click', close);
+  closeBtn.addEventListener('click', () => close());
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && state.open) close(); });
+
+  // Open directly from URL: /dashboard, ?view=dashboard, or #dashboard
+  function shouldAutoOpen() {
+    const p = (location.pathname || '').toLowerCase();
+    const h = (location.hash || '').toLowerCase();
+    const q = new URLSearchParams(location.search);
+    return p === '/dashboard' || p.startsWith('/dashboard/') ||
+           h === '#dashboard' || q.get('view') === 'dashboard';
+  }
+  if (shouldAutoOpen()) {
+    // Defer one frame so the underlying app finishes its initial render first.
+    requestAnimationFrame(() => open({ silent: true }));
+  }
+  window.addEventListener('popstate', () => {
+    if (shouldAutoOpen()) open({ silent: true });
+    else close({ silent: true });
+  });
 
   // ---------- Helpers ----------
   function fmtNumber(n) { return Math.round(n).toLocaleString(); }

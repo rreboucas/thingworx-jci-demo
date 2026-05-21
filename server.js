@@ -54,6 +54,11 @@ function tickVibration() {
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Shareable deep link: /dashboard opens the Executive Dashboard directly.
+app.get('/dashboard', (_req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
 app.get('/api/assets', (_req, res) => {
   res.json({
     assets: state.assets.map(({ baseline, ...rest }) => rest),
