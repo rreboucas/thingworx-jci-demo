@@ -66,8 +66,10 @@ html, body {
 }
 
 .topbar__logo {
-  height: 22px;
+  height: 26px;
   width: auto;
+  max-width: 110px;
+  object-fit: contain;
 }
 
 .topbar__accent {
