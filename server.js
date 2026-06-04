@@ -59,6 +59,11 @@ app.get('/dashboard', (_req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
+// Mailwave inbox demo — Emily's email client showing the Lodge Inn upgrade offer.
+app.get('/inbox', (_req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'inbox.html'));
+});
+
 app.get('/api/assets', (_req, res) => {
   res.json({
     assets: state.assets.map(({ baseline, ...rest }) => rest),
