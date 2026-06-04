@@ -15,95 +15,95 @@
       starred: true
     },
     {
-      id: 'acme-trip',
-      sender: 'Acme Travel Co.',
+      id: 'wayfarer',
+      sender: 'Wayfarer Travel',
       subject: 'Your trip itinerary is ready',
-      snippet: 'Confirmation #TR-558210 · Departure tomorrow 6:42am · Gate B14',
+      snippet: 'Confirmation #WF-558210 · Departure tomorrow 6:42am · Gate B14',
       date: 'Yesterday',
       unread: true
     },
     {
-      id: 'chase',
-      sender: 'Chase Sapphire',
+      id: 'meridian',
+      sender: 'Meridian Reserve Card',
       subject: 'Statement available — May',
-      snippet: 'Your May statement is ready to view in the Chase mobile app or online.',
+      snippet: 'Your May statement is ready to view in the Meridian app or online.',
       date: 'Yesterday'
     },
     {
-      id: 'docusign',
-      sender: 'DocuSign',
+      id: 'inksign',
+      sender: 'InkSign',
       subject: 'Please review and sign: Stay Agreement',
       snippet: 'Lodge Inn by the Sea sent you an agreement to review and sign before your stay.',
       date: 'May 30',
       unread: true
     },
     {
-      id: 'opentable',
-      sender: 'OpenTable',
-      subject: 'Reservation reminder — The Ivy at 7pm',
-      snippet: "Just a friendly reminder of your reservation tomorrow. Reply STOP to opt out.",
+      id: 'plate-and-table',
+      sender: 'Plate & Table',
+      subject: 'Reservation reminder — Costera at 7pm',
+      snippet: 'Just a friendly reminder of your reservation tomorrow. Reply STOP to opt out.',
       date: 'May 29'
     },
     {
-      id: 'pilates',
-      sender: 'Pilates Studio NYC',
+      id: 'pilates-studio',
+      sender: 'Coastline Pilates',
       subject: 'Your week of bookings',
       snippet: 'Mon 8am Reformer · Wed 7am Mat · Fri 6pm Reformer · See you soon!',
       date: 'May 28'
     },
     {
-      id: 'spotify',
-      sender: 'Spotify',
+      id: 'soundwave',
+      sender: 'Soundwave',
       subject: 'Your May Wrapped is here',
       snippet: 'You listened to 312 hours of music in May. Top genre: Indie folk.',
       date: 'May 27'
     },
     {
-      id: 'goodreads',
-      sender: 'Goodreads',
+      id: 'pageturner',
+      sender: 'PageTurner',
       subject: 'New release from one of your authors',
-      snippet: "Tana French's new mystery is now available — early reviews are calling it her best yet.",
+      snippet: "Vera Hollings' new mystery is now available — early reviews are calling it her best yet.",
       date: 'May 26'
     },
     {
-      id: 'linkedin',
-      sender: 'LinkedIn',
+      id: 'connectly',
+      sender: 'Connectly',
       subject: '5 people you may know',
       snippet: 'Ava Patel, Marcus Lin, Priya Desai, and 2 others recently joined your industry.',
       date: 'May 25'
     },
     {
-      id: 'apple',
-      sender: 'Apple',
-      subject: 'Your Apple ID was used to sign in',
-      snippet: "Your Apple ID was used to sign in to a new MacBook Pro on May 24, 9:14 PM PDT.",
+      id: 'orchard',
+      sender: 'Orchard ID',
+      subject: 'Your Orchard ID was used to sign in',
+      snippet: 'Your Orchard ID was used to sign in to a new laptop on May 24, 9:14 PM PDT.',
       date: 'May 24'
     },
     {
-      id: 'airbnb',
-      sender: 'Airbnb',
+      id: 'staysphere',
+      sender: 'StaySphere',
       subject: 'Your host left a review',
       snippet: '"Emily was a wonderful guest — communicative, respectful, and welcome back anytime."',
       date: 'May 22'
     },
     {
-      id: 'nyt',
-      sender: 'The New York Times',
+      id: 'morning-times',
+      sender: 'The Morning Times',
       subject: 'Morning Briefing',
       snippet: "Wednesday: a recap of yesterday's headlines and what to watch today.",
       date: 'May 22'
     },
     {
-      id: 'patagonia',
-      sender: 'Patagonia',
+      id: 'ridgeline',
+      sender: 'Ridgeline Outfitters',
       subject: 'New arrivals: Summer essentials',
       snippet: 'Lightweight technical fleeces, wide-brim hats, and quick-dry layers — built to last.',
       date: 'May 20'
     },
     {
-      id: 'amex',
-      sender: 'American Express',
-      subject: 'You earned 4,820 Membership Rewards points',
+      id: 'sterling',
+      sender: 'Sterling Card Rewards',
+      subject: 'You earned 4,820 reward points',
       snippet: 'Your recent purchases have earned 4,820 points. View your account for details.',
       date: 'May 18'
     }
